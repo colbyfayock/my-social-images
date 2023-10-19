@@ -27,9 +27,47 @@ export async function generateMetadata({ params }: { params: { productId: string
       images: [
         getCldOgImageUrl({
           src: publicId,
-          crop: 'pad',
-          removeBackground: true,
-          underlay: 'aldebaran-s-qtRF_RxCAo0-unsplash_hqjdcr'
+          effects: [{ colorize: '100,co_black' }],
+          overlays: [
+            {
+              width: 2400,
+              height: 1200,
+              publicId,
+              crop: 'fill',
+              effects: [{
+                opacity: 60
+              }]
+            },
+            {
+              width: 1400,
+              crop: 'fit',
+              text: {
+                alignment: 'center',
+                color: 'white',
+                fontFamily: 'Source Sans Pro',
+                fontSize: 160,
+                fontWeight: 'bold',
+                text: headline
+              },
+              position: {
+                y: -100,
+              },
+            },
+            {
+              width: 1400,
+              crop: 'fit',
+              text: {
+                alignment: 'center',
+                color: 'white',
+                fontFamily: 'Source Sans Pro',
+                fontSize: 74,
+                text: body
+              },
+              position: {
+                y: 100,
+              },
+            },
+          ]
         })
       ]
     }

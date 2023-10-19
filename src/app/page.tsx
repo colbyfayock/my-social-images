@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       getCldOgImageUrl({
-        src: 'my-store_t4rgo2'
+        src: 'my-social-images/my-store_t4rgo2'
       })
     ]
   }
