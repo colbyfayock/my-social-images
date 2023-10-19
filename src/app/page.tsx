@@ -17,9 +17,13 @@ cloudinary.config({
 export const metadata: Metadata = {
   openGraph: {
     images: [
-      getCldOgImageUrl({
-        src: 'my-social-images/my-store_t4rgo2'
-      })
+      {
+        url: getCldOgImageUrl({
+          src: 'my-social-images/my-store_t4rgo2'
+        }),
+        width: 1200,
+        height: 627,
+      }
     ]
   }
 }

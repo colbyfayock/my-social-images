@@ -25,50 +25,54 @@ export async function generateMetadata({ params }: { params: { productId: string
   return {
     openGraph: {
       images: [
-        getCldOgImageUrl({
-          src: publicId,
-          effects: [{ colorize: '100,co_black' }],
-          overlays: [
-            {
-              width: 2400,
-              height: 1200,
-              publicId,
-              crop: 'fill',
-              effects: [{
-                opacity: 60
-              }]
-            },
-            {
-              width: 1400,
-              crop: 'fit',
-              text: {
-                alignment: 'center',
-                color: 'white',
-                fontFamily: 'Source Sans Pro',
-                fontSize: 160,
-                fontWeight: 'bold',
-                text: headline
+        {
+          url: getCldOgImageUrl({
+            src: publicId,
+            effects: [{ colorize: '100,co_black' }],
+            overlays: [
+              {
+                width: 2400,
+                height: 1254,
+                publicId,
+                crop: 'fill',
+                effects: [{
+                  opacity: 60
+                }]
               },
-              position: {
-                y: -100,
+              {
+                width: 1400,
+                crop: 'fit',
+                text: {
+                  alignment: 'center',
+                  color: 'white',
+                  fontFamily: 'Source Sans Pro',
+                  fontSize: 160,
+                  fontWeight: 'bold',
+                  text: headline
+                },
+                position: {
+                  y: -100,
+                },
               },
-            },
-            {
-              width: 1400,
-              crop: 'fit',
-              text: {
-                alignment: 'center',
-                color: 'white',
-                fontFamily: 'Source Sans Pro',
-                fontSize: 74,
-                text: body
+              {
+                width: 1400,
+                crop: 'fit',
+                text: {
+                  alignment: 'center',
+                  color: 'white',
+                  fontFamily: 'Source Sans Pro',
+                  fontSize: 74,
+                  text: body
+                },
+                position: {
+                  y: 100,
+                },
               },
-              position: {
-                y: 100,
-              },
-            },
-          ]
-        })
+            ]
+          }),
+          width: 1200,
+          height: 627,
+        }
       ]
     }
   }
