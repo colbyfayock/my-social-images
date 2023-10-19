@@ -12,6 +12,8 @@ const Button = ({ children, className = '', color = 'slate', onClick }: ButtonPr
 
   if ( color === 'red' ) {
     buttonColor = 'text-white bg-red-600 hover:bg-red-500 dark:bg-red-500 dark:hover:bg-red-400'
+  } else if ( color === 'blue' ) {
+    buttonColor = 'text-white bg-blue-600 hover:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400'
   }
 
   return (

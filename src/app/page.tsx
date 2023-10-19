@@ -1,30 +1,47 @@
+import Link from 'next/link';
+import { Metadata } from 'next';
+import { v2 as cloudinary } from 'cloudinary';
+import { getCldOgImageUrl } from 'next-cloudinary';
+
 import Container from '@/components/Container';
+import CldImage from '@/components/CldImage';
 
-import products from '@/data/products.json';
+import { CloudinaryResource } from '@/types/cloudinary';
 
-function Home() {
+cloudinary.config({
+  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+export const metadata: Metadata = {
+  openGraph: {
+    images: [
+      getCldOgImageUrl({
+        src: 'my-store_t4rgo2'
+      })
+    ]
+  }
+}
+
+async function Home() {
+  const { resources: products } = await cloudinary.api.resources_by_tag('my-social-images', { context: true });
   return (
     <Container>
       <ul className="grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {products.map((product) => {
+        {Array.isArray(products) && products.map((product: CloudinaryResource) => {
+          const { alt } = product.context?.custom || {};
           return (
-            <li key={product.name} className="rounded overflow-hidden bg-white dark:bg-slate-700">
-              <div className="relative">
-                <img
+            <li key={product.asset_id} className="rounded overflow-hidden bg-white dark:bg-slate-700">
+              <Link href={`/products/${product.asset_id}`}>
+                <CldImage
                   width={800}
-                  height={450}
-                  src={product.image}
-                  alt={product.name}
+                  height={800}
+                  crop="fill"
+                  src={product.public_id}
+                  alt={alt || ''}
                 />
-              </div>
-              <div className="py-4 px-5">
-                <p className="mb-1 text-md font-bold leading-tight text-neutral-800 dark:text-neutral-50">
-                  { product.name }
-                </p>
-                <p className="text-xs text-neutral-500 dark:text-neutral-400">
-                  <a href={product.link}>{ product.link }</a>
-                </p>
-              </div>
+              </Link>
             </li>
           )
         })}
