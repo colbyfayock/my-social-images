@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: getCldOgImageUrl({
-          src: 'my-social-images/my-store_t4rgo2'
+          src: 'tutorials/my-social-images/my-store_t4rgo2'
         }),
         width: 1200,
         height: 627,
