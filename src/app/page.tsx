@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 }
 
 async function Home() {
-  const { resources: products } = await cloudinary.api.resources_by_tag('my-social-images', { context: true });
+  const { resources: products } = await cloudinary.api.resources_by_tag('tutorials/my-social-images', { context: true });
   return (
     <Container>
       <ul className="grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
